@@ -29,7 +29,7 @@ listint_t *reverse_list(listint_t *head)
 int is_palindrome(listint_t **head)
 {
     listint_t *slow = *head, *fast = *head;
-    listint_t *second_half, *middle = NULL;
+    listint_t *second_half;
     listint_t *p1, *p2;
     int is_pal = 1;
 
