@@ -1,4 +1,5 @@
 #include "lists.h"
+listint_t *reverse_list(listint_t *head);
 #include <stddef.h>
 
 /**
