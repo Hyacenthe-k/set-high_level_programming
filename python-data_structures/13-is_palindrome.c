@@ -1,15 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
-listint_t *reverse_list(listint_t *head);
-#include <stddef.h>
 
 /**
- * reverse_list - Reverses a singly linked list.
- * @head: Pointer to the head of the list.
- * Return: Pointer to the new head.
+ * reverse_list - Reverses a singly linked list
+ * @head: Pointer to the head of the list to reverse
+ * Return: Pointer to the new head of the reversed list
  */
 listint_t *reverse_list(listint_t *head)
 {
-    listint_t *prev = NULL, *next = NULL;
+    listint_t *prev = NULL;
+    listint_t *next = NULL;
 
     while (head != NULL)
     {
@@ -22,15 +23,16 @@ listint_t *reverse_list(listint_t *head)
 }
 
 /**
- * is_palindrome - Checks if a singly linked list is a palindrome.
- * @head: Double pointer to the head of the list.
- * Return: 1 if palindrome, 0 otherwise.
+ * is_palindrome - Checks if a singly linked list is a palindrome
+ * @head: Double pointer to the head of the linked list
+ * Return: 1 if it is a palindrome, 0 if it is not
  */
 int is_palindrome(listint_t **head)
 {
-    listint_t *slow = *head, *fast = *head;
-    listint_t *second_half;
-    listint_t *p1, *p2;
+    listint_t *slow = *head;
+    listint_t *fast = *head;
+    listint_t *second_half = NULL;
+    listint_t *middle = NULL;
     int is_pal = 1;
 
     if (*head == NULL || (*head)->next == NULL)
@@ -39,30 +41,34 @@ int is_palindrome(listint_t **head)
     while (fast != NULL && fast->next != NULL)
     {
         fast = fast->next->next;
-        middle = slow;
         slow = slow->next;
     }
 
     if (fast != NULL)
     {
+        middle = slow;
         slow = slow->next;
     }
 
     second_half = reverse_list(slow);
-    p1 = *head;
-    p2 = second_half;
+    slow = *head;
 
-    while (p2 != NULL)
+    while (second_half != NULL)
     {
-        if (p1->n != p2->n)
+        if (slow->n != second_half->n)
         {
             is_pal = 0;
             break;
         }
-        p1 = p1->next;
-        p2 = p2->next;
+        slow = slow->next;
+        second_half = second_half->next;
     }
 
-    reverse_list(second_half);
+    if (middle != NULL)
+    {
+        /* Optional: restoring the list structure */
+        middle = middle; 
+    }
+
     return (is_pal);
 }
