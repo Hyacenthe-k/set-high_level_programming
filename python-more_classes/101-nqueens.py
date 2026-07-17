@@ -16,9 +16,9 @@ def print_solutions(solutions):
 def is_safe(board, row, col):
     """Checks if a queen can be safely placed at board[row][col]."""
     for i in range(row):
-        if board[i] == col or \
-           board[i] - i == col - row or \
-           board[i] + i == col + row:
+        if (board[i] == col or
+                board[i] - i == col - row or
+                board[i] + i == col + row):
             return False
     return True
 
