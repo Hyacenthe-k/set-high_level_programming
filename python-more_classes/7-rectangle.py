@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Defines a class Rectangle with a configurable string representation symbol.
+Defines a class Rectangle with a customizable print symbol.
 """
 
 
@@ -55,7 +55,7 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Returns a string representation using the customizable print_symbol."""
+        """Returns a string using the current print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
         symbol_line = str(self.print_symbol) * self.__width
