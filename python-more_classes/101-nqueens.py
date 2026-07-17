@@ -1,42 +1,46 @@
 #!/usr/bin/python3
 """
-Solves the N queens puzzle on an N x N chessboard.
-Usage: nqueens N
+Solves the N queens puzzle using backtracking.
 """
 import sys
 
 
-def print_solutions(solutions):
-    """Prints the coordinates of the Queens."""
-    for solution in solutions:
-        formatted = [[i, solution[i]] for i in range(len(solution))]
-        print(formatted)
+def init_board(n):
+    """Creates an n x n board filled with 0s."""
+    return [[0] * n for _ in range(n)]
 
 
-def is_safe(board, row, col):
-    """Checks if a queen can be safely placed at board[row][col]."""
+def is_safe(board, row, col, n):
+    """Checks if a queen can be placed at (row, col)."""
     for i in range(row):
-        if (board[i] == col or
-                board[i] - i == col - row or
-                board[i] + i == col + row):
-            return False
+        for j in range(n):
+            if board[i][j] == 1 and (
+                j == col or
+                abs(i - row) == abs(j - col)
+            ):
+                return False
     return True
 
 
-def solve_nqueens(board, row, n, solutions):
-    """Backtracking helper to solve N-Queens."""
+def solve(board, row, n, solutions):
+    """Recursively attempts to place queens row by row."""
     if row == n:
-        solutions.append(list(board))
+        solution = []
+        for i in range(n):
+            for j in range(n):
+                if board[i][j] == 1:
+                    solution.append([i, j])
+        solutions.append(solution)
         return
-
     for col in range(n):
-        if is_safe(board, row, col):
-            board[row] = col
-            solve_nqueens(board, row + 1, n, solutions)
+        if is_safe(board, row, col, n):
+            board[row][col] = 1
+            solve(board, row + 1, n, solutions)
+            board[row][col] = 0
 
 
 def main():
-    """Main execution entrypoint."""
+    """Validates arguments and runs the N queens solver."""
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
@@ -51,10 +55,11 @@ def main():
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [-1] * n
+    board = init_board(n)
     solutions = []
-    solve_nqueens(board, 0, n, solutions)
-    print_solutions(solutions)
+    solve(board, 0, n, solutions)
+    for sol in solutions:
+        print(sol)
 
 
 if __name__ == "__main__":
