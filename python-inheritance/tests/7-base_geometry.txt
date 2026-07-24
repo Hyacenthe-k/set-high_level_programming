@@ -39,6 +39,16 @@ Checking integer_validator with invalid types (TypeError):
     ...
     TypeError: list_val must be an integer
 
+    >>> bg.integer_validator("age", (4,))
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
+    >>> bg.integer_validator("age", {3, 4})
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
     >>> bg.integer_validator("none_val", None)
     Traceback (most recent call last):
     ...
