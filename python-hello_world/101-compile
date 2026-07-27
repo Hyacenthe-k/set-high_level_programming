@@ -1,2 +1,9 @@
-#!/bin/bash
-python3 -m py_compile "$PYFILE"
+#!/usr/bin/python3
+"""Compiles a Python file into its .pyc bytecode file."""
+import os
+import py_compile
+
+if __name__ == "__main__":
+    pyfile = os.environ.get("PYFILE")
+    print("Compiling {} ...".format(pyfile))
+    py_compile.compile(pyfile, cfile=pyfile + "c")
