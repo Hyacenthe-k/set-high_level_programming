@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Module that defines a Student class with filtered attributes JSON conversion."""
+"""Module defining a Student class with filtered dictionary retrieval."""
 
 
 class Student:
-    """Defines a student."""
+    """Defines a student by first name, last name, and age."""
 
     def __init__(self, first_name, last_name, age):
-        """Initializes student instance."""
+        """Initializes a new Student instance."""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age

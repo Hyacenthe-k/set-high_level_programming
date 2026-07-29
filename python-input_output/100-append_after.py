@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Module to insert line after matching strings in a file."""
+"""Module inserting a line of text after matching strings in a file."""
 
 
 def append_after(filename="", search_string="", new_string=""):
-    """Inserts a line of text to a file after each line containing a specific string."""
+    """Inserts a string after each line containing a specific search string."""
     lines = []
     with open(filename, "r", encoding="utf-8") as f:
         for line in f:
