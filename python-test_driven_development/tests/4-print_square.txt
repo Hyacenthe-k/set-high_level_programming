@@ -1,0 +1,20 @@
+The ``4-print_square`` module
+=============================
+
+Using ``print_square``
+----------------------
+
+Load function:
+    >>> print_square = __import__('4-print_square').print_square
+
+Valid sizes:
+    >>> print_square(2)
+    ##
+    ##
+    >>> print_square(0)
+
+Invalid negative size:
+    >>> print_square(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: size must be >= 0
