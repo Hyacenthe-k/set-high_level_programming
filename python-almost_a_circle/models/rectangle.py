@@ -74,19 +74,17 @@ class Rectangle(Base):
 
     def area(self):
         """Return the area value of the Rectangle instance."""
-        return self.width * self.height
+        return self.__width * self.__height
 
     def display(self):
-        """Print the Rectangle instance with the '#' character."""
-        for _ in range(self.y):
-            print()
-        for _ in range(self.height):
-            print(" " * self.x + "#" * self.width)
+        """Print the Rectangle instance with the '#' character taking x and y into account."""
+        print("\n" * self.__y, end="")
+        for _ in range(self.__height):
+            print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         """Return representation string of Rectangle."""
-        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - " \
-               f"{self.width}/{self.height}"
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
 
     def update(self, *args, **kwargs):
         """Assign key/value arguments to attributes."""
