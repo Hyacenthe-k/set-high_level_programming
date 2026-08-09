@@ -98,3 +98,36 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw all Rectangles and Squares using Turtle graphics."""
+        import turtle
+
+        screen = turtle.Screen()
+        screen.title("Almost a Circle")
+
+        pen = turtle.Turtle()
+        pen.speed(0)
+
+        for rectangle in list_rectangles:
+            pen.penup()
+            pen.goto(rectangle.x, rectangle.y)
+            pen.pendown()
+
+            for _ in range(2):
+                pen.forward(rectangle.width)
+                pen.left(90)
+                pen.forward(rectangle.height)
+                pen.left(90)
+
+        for square in list_squares:
+            pen.penup()
+            pen.goto(square.x, square.y)
+            pen.pendown()
+
+            for _ in range(4):
+                pen.forward(square.size)
+                pen.left(90)
+
+        turtle.done()
