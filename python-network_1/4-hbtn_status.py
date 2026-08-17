@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""
-Module to fetch status from https://alx-intranet.hbtn.io/status using requests.
-"""
+"""Fetches the status of the HBTN API."""
 import requests
 
 
 if __name__ == "__main__":
-    url = 'https://alx-intranet.hbtn.io/status'
-    r = requests.get(url)
+    response = requests.get("https://alx-intranet.hbtn.io/status")
     print("Body response:")
-    print("\t- type: {}".format(type(r.text)))
-    print("\t- content: {}".format(r.text))
+    print("\t- type: {}".format(type(response.text)))
+    print("\t- content: {}".format(response.text))
